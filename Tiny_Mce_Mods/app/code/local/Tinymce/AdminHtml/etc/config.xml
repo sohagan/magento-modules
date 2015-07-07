@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<tinymce_AdminHtml>
+			<version>0.1.0</version>
+		</tinymce_AdminHtml>
+	</modules>
+	<stores>
+		<admin>
+			<design>
+				<package>
+					<name>default</name>
+				</package>
+				<theme>
+					<default>tinymce</default>
+					<!-- template>tinymce</template>
+					<skin>tinymce</skin>
+					<layout>tinymce</layout>
+					<locale>default</locale-->
+				</theme>
+			</design>
+		</admin>
+	</stores>
+</config>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+      <Cardsave_Sales>
+        <version>0.0.1</version>
+      </Cardsave_Sales>
+    </modules>
+   <global>
+   	  <models>
+        <sales>
+          <rewrite>
+            <order>Cardsave_Sales_Model_Order</order>
+            <order_invoice>Cardsave_Sales_Model_Order_Invoice</order_invoice>
+			      <order_payment>Cardsave_Sales_Model_Order_Payment</order_payment>
+			      <service_quote>Cardsave_Sales_Model_Service_Quote</service_quote>
+          </rewrite>
+        </sales>
+      </models>
+	  <sales>
+		<order>
+			<statuses>
+				<csv_paid translate="label">
+					<label>CardSave - Successful Payment</label>
+				</csv_paid>
+				<csv_pending_threed_secure translate="label">
+          <label>CardSave - Pending 3D Secure</label>
+        </csv_pending_threed_secure>
+        <csv_failed_threed_secure translate="label">
+          <label>CardSave - Failed 3D Secure</label>
+        </csv_failed_threed_secure>
+				<csv_pending translate="label">
+					<label>CardSave - Pending Hosted Payment</label>
+				</csv_pending>
+				<csv_pending_hosted_payment translate="label">
+					<label>CardSave - Pending Hosted Payment</label>
+				</csv_pending_hosted_payment>
+				<csv_failed_hosted_payment translate="label">
+					<label>CardSave - Failed Payment</label>
+				</csv_failed_hosted_payment>
+        <csv_refunded translate="label">
+          <label>CardSave - Payment Refunded</label>
+        </csv_refunded>
+        <csv_voided translate="label">
+          <label>CardSave - Payment Voided</label>
+        </csv_voided>
+        <csv_preauth translate="label">
+          <label>CardSave - Payment PreAuthorized</label>
+        </csv_preauth>
+        <csv_collected translate="label">
+          <label>CardSave - Payment Collected</label>
+        </csv_collected>
+			</statuses>
+		</order>
+	  </sales>
+   </global>
+</config>

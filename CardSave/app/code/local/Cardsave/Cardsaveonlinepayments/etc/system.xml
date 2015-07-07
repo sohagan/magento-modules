@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<payment>
+			<groups>
+				<cardsaveonlinepayments translate="label">
+					<label>CardSave</label>
+					<comment>
+						<![CDATA[
+							<a href="https://mms.cardsaveonlinepayments.com" target="_blank">CardSave Merchant Management System (MMS)</a><br />
+							<a href="mailto:ecomm@cardsave.net" target="_blank">CardSave Integration Support</a><br />
+							<a href="http://www.cardsave.net/" target="_blank">CardSave Website</a>]]>
+					</comment>
+					<sort_order>670</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<heading_modulesettings translate="label">
+							<label>Module Settings</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</heading_modulesettings>
+						<active translate="label">
+							<label>Enabled</label>
+							<sort_order>10</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</active>
+						<debug translate="label">
+							<label>Debug Mode</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</debug>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>The name of this payment method to be displayed to the customer in the checkout.</comment>
+						</title>
+						<heading_gatewaysettings translate="label">
+							<label>Gateway Settings</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</heading_gatewaysettings>
+						<merchantid translate="label">
+							<label>Merchant ID</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</merchantid>
+						<password translate="label">
+							<label>Password</label>
+							<frontend_type>password</frontend_type>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</password>
+						<presharedkey translate="label">
+							<label>Pre Shared Key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</presharedkey>
+						<hashmethod translate="label">
+							<label>Hash Method</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>81</sort_order>
+							<source_model>cardsaveonlinepayments/source_hashMethod</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</hashmethod>
+						<payment_action translate="label">
+							<label>Transaction Type</label>
+							<sort_order>120</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>cardsaveonlinepayments/source_paymentAction</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</payment_action>
+						<mode translate="label">
+							<label>Payment Integration Method</label>
+							<sort_order>130</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>cardsaveonlinepayments/source_paymentMode</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>
+								<![CDATA[<b>Please note:</b> The Direct (API) Integration method requires Outgoing Port 4430 TCP is open in your servers firewall to communicate with the CardSave Payment Gateway.]]>
+							</comment>
+						</mode>
+						<resultdeliverymethod>
+							<label>Result Delivery Method</label>
+							<sort_order>131</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>cardsaveonlinepayments/source_resultDeliveryMethod</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>
+								<![CDATA[<strong>Please note</strong>: The above value is only applicable to Hosted Payment Form payment mode]]>
+							</comment>
+						</resultdeliverymethod>
+						<takePaymentInStoreBaseCurrency translate="label">
+							<label>Always take payments in Magento Store Base Currency?</label>
+							<sort_order>132</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>
+								<![CDATA[<strong>Please note</strong>: Only change this setting to 'No' if you have a Multi-Currency merchant account.]]>
+							</comment>
+						</takePaymentInStoreBaseCurrency>						
+						<heading_mandatoryfields translate="label">
+							<label>Hosted Payment Form Mandatory Fields</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>148</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</heading_mandatoryfields>
+						<cv2mandatory>
+							<label>CV2 Mandatory</label>
+							<sort_order>149</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</cv2mandatory>
+						<address1mandatory>
+							<label>Address1 Mandatory</label>
+							<sort_order>150</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</address1mandatory>
+						<citymandatory>
+							<label>City Mandatory</label>
+							<sort_order>160</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</citymandatory>
+						<postcodemandatory>
+							<label>PostCode Mandatory</label>
+							<sort_order>170</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</postcodemandatory>
+						<statemandatory>
+							<label>State Mandatory</label>
+							<sort_order>180</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</statemandatory>
+						<countrymandatory>
+							<label>Country Mandatory</label>
+							<sort_order>190</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</countrymandatory>
+						<heading_additionalsettings translate="label">
+							<label>Additional Settings</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>195</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</heading_additionalsettings>
+						<customstockmanagementenabled>
+							<label>Custom Stock Management Enabled</label>
+							<sort_order>196</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</customstockmanagementenabled>
+						<order_status translate="label">
+							<label>New order status</label>
+							<sort_order>197</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>cardsaveonlinepayments/source_orderStatus</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</order_status>						
+						<heading_technicalinfo translate="label">
+							<label>Additional Technical Information</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>200</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</heading_technicalinfo>
+						<paymentprocessordomain translate="label">
+							<label>Payment Processor Domain</label>
+							<frontend_type>label</frontend_type>
+							<sort_order>201</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</paymentprocessordomain>
+						<paymentprocessorport translate="label">
+							<label>Payment Processor Port</label>
+							<frontend_type>label</frontend_type>
+							<sort_order>202</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</paymentprocessorport>
+						<hostedpaymentactionurl>
+							<label>Hosted Payment Form Action URL</label>
+							<frontend_type>label</frontend_type>
+							<sort_order>203</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</hostedpaymentactionurl>
+						<transparentredirectactionurl>
+							<label>Transparent Redirect Action URL</label>
+							<frontend_type>label</frontend_type>
+							<sort_order>204</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</transparentredirectactionurl>
+						<serverpullresultactionurl>
+							<label>Server Pull Result Action URL</label>
+							<frontend_type>label</frontend_type>
+							<sort_order>205</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</serverpullresultactionurl>
+					</fields>
+				</cardsaveonlinepayments>
+			</groups>
+		</payment>
+	</sections>
+</config>

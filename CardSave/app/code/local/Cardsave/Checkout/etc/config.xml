@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+      <Cardsave_Checkout>
+         <version>0.0.1</version>
+      </Cardsave_Checkout>
+   </modules>
+   <global>
+   		<models>
+	    	<checkout>
+	    		<rewrite>
+			          <type_onepage>Cardsave_Checkout_Model_Type_Onepage</type_onepage>
+			    </rewrite>
+	    	</checkout>
+	    </models>
+      <blocks>
+        <checkout>
+          <rewrite>
+            <onepage_payment_methods>Cardsave_Checkout_Block_Onepage_Payment_Methods</onepage_payment_methods>
+          </rewrite>
+        </checkout>
+      </blocks>
+   </global>
+</config>

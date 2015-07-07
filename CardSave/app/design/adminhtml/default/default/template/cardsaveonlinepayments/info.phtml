@@ -1,0 +1,18 @@
+<?php $direct = Mage::getModel('cardsaveonlinepayments/direct'); ?>
+<?php if ($direct->getConfigData('mode') != Cardsave_Cardsaveonlinepayments_Model_Source_PaymentMode::PAYMENT_MODE_DIRECT_API) {?>
+	<?php if ($direct->getConfigData('mode') == Cardsave_Cardsaveonlinepayments_Model_Source_PaymentMode::PAYMENT_MODE_HOSTED_PAYMENT_FORM) {?>
+		<?php echo $this->__('CardSave Hosted Payment'); ?>
+	<?php } else {?>
+		<?php echo $this->__('CardSave Transparent Redirect'); ?>
+	<?php }?>
+<?php } else {?>
+	<?php if($_info = $this->getInfo()): ?>
+	<?php echo $this->__('Name on the Card: %s', $this->htmlEscape($this->getInfo()->getCcOwner())) ?>
+	<br/>
+	<?php echo $this->__('Card Number: %s', $this->htmlEscape($this->getCcNumber())) ?>
+	<br/>
+	<?php echo $this->__('Expiration Date: %s/%s', $this->htmlEscape($this->getInfo()->getCcExpMonth()), $this->htmlEscape($this->getInfo()->getCcExpYear())) ?>
+	<br />
+	<?php else: ?>
+	<?php endif; ?>
+<?php }?>

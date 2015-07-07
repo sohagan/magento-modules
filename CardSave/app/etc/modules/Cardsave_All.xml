@@ -1,0 +1,19 @@
+<config>
+  <modules>
+    <Cardsave_Cardsaveonlinepayments>
+      <active>true</active>
+      <codePool>local</codePool>
+      <depends>
+        <Mage_Payment />
+      </depends>
+    </Cardsave_Cardsaveonlinepayments>
+    <Cardsave_Checkout>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Cardsave_Checkout>
+    <Cardsave_Sales>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Cardsave_Sales>
+  </modules>
+</config>

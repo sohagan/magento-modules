@@ -1,0 +1,172 @@
+<?php
+$m_boTransactionAuthorised = false;
+$m_boValidCrossReference = false;
+$m_boExtensionVersionWithCrossReferenceFeature = true;
+
+$m_order = $this->getInfo()->getOrder();
+$m_payment = $m_order->getPayment();
+$m_szOrderID = $m_order->getRealOrderId();
+$m_szOrderStatus = $m_order->getStatus();
+$m_szAmount = $m_order->getBaseGrandTotal();
+$m_nPaymentVoided = 0;//(int)$m_order->getVoided();
+$m_nPaymentRefunded = 0;
+$m_nPaymentCollected = 0;
+$m_boCanVoid = false;
+$m_boCanCollect = false;
+
+// get the additional information column data for a Magento payment
+$additional_info = $m_payment->getAdditionalInformation();
+$szToday = date("Ymd");
+
+// for redirected transactions the TransactionId can't be updated with a new CrossReference (ie: 3DS transaction), need to revert back to additional_info
+$additionalInfo = $m_payment->getAdditionalInformation();
+if(!key_exists("CrossReference", $additionalInfo))
+{
+	$szCrossReference = false;
+}
+else
+{
+	$szCrossReference = $additional_info["CrossReference"];
+}
+
+if(!key_exists("TransactionDateTime", $additionalInfo))
+{
+	$szTransactionDateTime = false;
+}
+else
+{
+	$szTransactionDateTime = $additional_info["TransactionDateTime"];
+}
+
+if(!key_exists("TransactionType", $additionalInfo))
+{
+	$szTransactionType = false;
+}
+else
+{
+	$szTransactionType = $additional_info["TransactionType"];
+}
+
+
+if(key_exists("Voided", $additionalInfo))
+{
+	$m_nPaymentVoided = (int)$additional_info["Voided"];
+}
+if(key_exists("Refunded", $additionalInfo))
+{
+	$m_nPaymentRefunded = (int)$additional_info["Refunded"];
+}
+if(key_exists("Collected", $additionalInfo))
+{
+	$m_nPaymentCollected = (int)$additional_info["Collected"];
+}
+
+if(!$szCrossReference ||
+	!$szTransactionDateTime ||
+	!$szTransactionType)
+{
+	$m_boExtensionVersionWithCrossReferenceFeature = false;
+}
+else
+{	
+	if($szTransactionType == 'PREAUTH')
+	{
+		$m_szTransactionType = "PREAUTH";
+		
+		// check if payment can be voided
+		if (!$m_nPaymentVoided &&
+			!$m_nPaymentRefunded &&
+			// payment must be successful
+			$m_szOrderStatus == "csv_preauth")
+		{
+			if (strtotime($szToday) == strtotime($szTransactionDateTime))
+			{
+				$m_boCanVoid = true;
+			}
+		}
+		
+		// check if payment can be collected
+		if(!$m_nPaymentVoided &&
+			!$m_nPaymentCollected &&
+			// payment must be successful
+			$m_szOrderStatus == "csv_preauth")
+		{
+			$m_boCanCollect = true;
+		}
+	}
+	else if($szTransactionType == 'SALE')
+	{
+		$m_szTransactionType = "SALE";
+		
+		// check if payment can be voided
+		if(!$m_nPaymentVoided &&
+			!$m_nPaymentRefunded &&
+			// payment must be successful
+			$m_szOrderStatus == "csv_paid")
+		{
+			if(strtotime($szToday) == strtotime($szTransactionDateTime) &&
+				// for the time being only allow to execute a root VOID
+				$m_szOrderStatus == "pys_paid")
+			{
+				$m_boCanVoid = true;
+			}
+		}
+		
+		// check if it can be collected - only preauth can be collected
+		$m_nPaymentCollected = 0;
+	}
+	else 
+	{
+		Mage::log('Order info error: transaction type: '.$szTransactionType.' is not supported by the Cardsave/cardsaveonlinepayments extension');
+	}
+}
+?>
+
+<div>
+	CrossReference: 
+<?php
+if(!$m_boExtensionVersionWithCrossReferenceFeature)
+{
+	echo "<span style=\"font-weight:bold;color:Red;\">Missing data*</span>";
+}
+else
+{
+	echo "<span style=\"font-weight:bold;\">".$szCrossReference."</span>";
+}
+?>
+</div>
+<div>
+	Transaction Type: 
+<?php
+if(!$m_boExtensionVersionWithCrossReferenceFeature)
+{
+	echo "<span style=\"font-weight:bold;color:Red;\">Missing data*</span>";
+}
+else
+{
+	echo "<span style=\"font-weight:bold;\">".$m_szTransactionType."</span>";
+}
+?>
+</div>
+<div>
+	Amount: <?php echo "<span style=\"font-weight:bold\">".$m_szAmount."</span>"; ?>
+</div>
+
+<?php if(!$m_boExtensionVersionWithCrossReferenceFeature): ?>
+<div>
+	<span style="font-weight:bold;color:Red;">* Incomplete orders and orders processed through an older payment extension will not have all the data necessary for CrossReference payments</span>
+</div>
+<?php else: ?>
+<div>
+	<?php if($m_boCanVoid): ?>
+	<button type="button" id="voidButton" onclick="CSV_runCrossReferenceTransaction('<?php echo $this->getUrl('cardsaveonlinepayments/payment/void', array('_secure' => true)); ?>', '<?php echo $m_szOrderID; ?>', '<?php echo $szCrossReference; ?>', 'VOID');">
+		<span>VOID</span>
+	</button>
+	<?php endif; ?>
+	<?php if($m_boCanCollect): ?>
+	<button type="button" id="collectionButton" onclick="CSV_runCrossReferenceTransaction('<?php echo $this->getUrl('cardsaveonlinepayments/payment/collection', array('_secure' => true)); ?>', '<?php echo $m_szOrderID; ?>', '<?php echo $szCrossReference; ?>', 'COLLECTION');">
+		<span>COLLECT</span>
+	</button>
+	<?php endif; ?>
+</div>
+<?php endif; ?>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<tinymce_AdminHtml>
+			<active>true</active>
+			<codePool>local</codePool>
+		</tinymce_AdminHtml>
+	</modules>
+</config>
