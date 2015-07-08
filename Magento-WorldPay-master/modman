@@ -1,0 +1,18 @@
+# PHOENIX MEDIA - WorldPay
+
+# Module Code
+app/code/community/Phoenix/Worldpay    app/code/community/Phoenix/Worldpay
+
+# Design
+app/design/frontend/base/default/layout/*    app/design/frontend/base/default/layout/
+app/design/frontend/base/default/template/worldpay/*    app/design/frontend/base/default/template/worldpay/
+
+app/design/adminhtml/default/default/template/worldpay/*    app/design/adminhtml/default/default/template/worldpay/
+
+# Module Initializer
+app/etc/modules/Phoenix_Worldpay.xml    app/etc/modules/Phoenix_Worldpay.xml
+
+# Loaale
+app/locale/de_DE/Phoenix_Worldpay.csv    app/locale/de_DE/Phoenix_Worldpay.csv
+app/locale/en_GB/Phoenix_Worldpay.csv    app/locale/en_GB/Phoenix_Worldpay.csv
+app/locale/en_US/Phoenix_Worldpay.csv    app/locale/en_US/Phoenix_Worldpay.csv

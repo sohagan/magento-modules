@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Phoenix
+ * @package    Phoenix_Worldpay
+ * @copyright  Copyright (c) 2010 Phoenix Medien GmbH & Co. KG (http://www.phoenix-medien.de)
+ */
+-->
+<config>
+    <modules>
+        <Phoenix_Worldpay>
+            <version>1.4.5</version>
+        </Phoenix_Worldpay>
+    </modules>
+    <global>
+        <models>
+            <worldpay>
+                <class>Phoenix_Worldpay_Model</class>
+            </worldpay>
+        </models>
+        <helpers>
+	      <worldpay>
+            <class>Phoenix_Worldpay_Helper</class>
+		  </worldpay>
+	    </helpers>
+        <resources>
+            <worldpay_setup>
+                <setup>
+                    <module>Phoenix_Worldpay</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </worldpay_setup>
+            <worldpay_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </worldpay_write>
+            <worldpay_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </worldpay_read>
+        </resources>
+        <blocks>
+            <worldpay><class>Phoenix_Worldpay_Block</class></worldpay>
+        </blocks>
+        <payment>
+        	<url>https://www.worldpay.de/frontend/</url>
+            <transaction>
+                <modes>
+                    <LIVE>
+                        <code>live</code>
+                        <name>Live mode</name>
+                    </LIVE>
+                    <TEST>
+                    	<code>test</code>
+                    	<name>Test mode</name>
+                    </TEST>
+                </modes>
+            </transaction>
+        </payment>
+    </global>
+    <frontend>
+        <secure_url>
+            <worldpay_processing>/worldpay/processing</worldpay_processing>
+        </secure_url>
+        <routers>
+            <worldpay>
+                <use>standard</use>
+                <args>
+                    <module>Phoenix_Worldpay</module>
+                    <frontName>worldpay</frontName>
+                </args>
+            </worldpay>
+        </routers>
+        <translate>
+            <modules>
+                <Phoenix_Worldpay>
+                    <files>
+                        <default>Phoenix_Worldpay.csv</default>
+                    </files>
+                </Phoenix_Worldpay>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <worldpay>
+                    <file>worldpay.xml</file>
+                </worldpay>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Phoenix_Worldpay>
+                    <files>
+                        <default>Phoenix_Worldpay.csv</default>
+                    </files>
+                </Phoenix_Worldpay>
+            </modules>
+        </translate>
+    </adminhtml>
+	<phoenix>
+		<worldpay>
+			<verify_url>http://www.phoenix-media.eu/index.php?id=97</verify_url>
+		</worldpay>
+	</phoenix>
+	<default>
+        <payment>
+            <worldpay_cc>
+                <active>0</active>
+                <model>worldpay/cc</model>
+                <order_status>1</order_status>
+                <title>Credit Card (Worldpay)</title>
+                <desc>Your purchase from Magento</desc>
+                <allowspecific>0</allowspecific>
+                <use_store_currency>0</use_store_currency>
+                <request_type>authorize</request_type>
+				<transaction_mode>test</transaction_mode>
+				<fix_contact>1</fix_contact>
+				<hide_contact>0</hide_contact>
+                <enable_online_operations>0</enable_online_operations>
+                <signature_params>amount:currency:instId:cartId:authMode:email</signature_params>
+            </worldpay_cc>
+        </payment>
+    </default>
+</config>

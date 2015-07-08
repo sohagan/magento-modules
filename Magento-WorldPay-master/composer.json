@@ -1,0 +1,9 @@
+{
+    "name": "phoenix-media/magento-world-pay",
+    "type": "magento-module",
+    "description": "Phoenix Media WorldPay magento module",
+    "homepage": "https://github.com/PHOENIX-MEDIA/Magento-WorldPay",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "1.3.1"
+    }
+}
