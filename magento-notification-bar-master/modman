@@ -1,0 +1,13 @@
+# Define modman-managed symlinks
+# file format:
+# source destination
+
+# extension code
+app/code/community/FoxRunSoftware/NotificationBar app/code/community/FoxRunSoftware/NotificationBar
+
+# Magento Global Configuration
+app/etc/modules/FoxRunSoftware_NotificationBar.xml app/etc/modules/FoxRunSoftware_NotificationBar.xml
+
+# design
+app/design/frontend/base/default/layout/notificationbar.xml app/design/frontend/base/default/layout/notificationbar.xml
+app/design/frontend/base/default/template/notificationbar   app/design/frontend/base/default/template/notificationbar
