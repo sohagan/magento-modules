@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Activo Extensions
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Activo Commercial License
+ * that is available through the world-wide-web at this URL:
+ * http://extensions.activo.com/license_professional
+ *
+ * @copyright   Copyright (c) 2013 Activo Extensions (http://extensions.activo.com)
+ * @license     OSL 3.0
+ */
+-->
+<config>
+    <modules>
+        <Activo_CatalogSearch>
+            <version>1.0.7</version>
+        </Activo_CatalogSearch>
+    </modules>
+    <global>
+        <models>
+            <catalogsearch2>
+                <class>Activo_CatalogSearch_Model</class>
+            </catalogsearch2>
+            <catalogsearch_mysql4>
+              <rewrite>
+                <fulltext>Activo_CatalogSearch_Model_Mysql4_Fulltext</fulltext>
+              </rewrite>
+            </catalogsearch_mysql4>
+            <catalogsearch_resource>
+                <rewrite>
+                    <fulltext>Activo_CatalogSearch_Model_Resource_Fulltext</fulltext>
+                </rewrite>
+            </catalogsearch_resource>
+        </models>
+    </global>
+    
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <activo_news_cs>
+                        <type>singleton</type>
+                        <class>catalogsearch2/feed</class>
+                        <method>observe</method>
+                    </activo_news_cs>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml>	
+</config>
